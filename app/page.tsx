@@ -3,7 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X, Search, LogOut } from 'lucide-react';
 
-const API_BASE = 'http://localhost:8080/api';
+// Use VITE_API_URL if available, otherwise default to localhost
+const getApiBase = () => {
+  let baseUrl = process.env.VITE_API_URL;
+  if (!baseUrl) {
+    baseUrl = 'http://localhost:8080';
+  }
+  return `${baseUrl}/api`;
+};
+
+const API_BASE = getApiBase();
 
 interface Product {
   id: number;
